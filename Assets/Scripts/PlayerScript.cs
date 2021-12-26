@@ -40,9 +40,8 @@ public class PlayerScript : MonoBehaviour
             }
     }
 
-    void CreateBalls()
+    void CreateBalls(int count)
     {
-        int count = 2;
         if (gameData.balls == 1)
             count = 1;
         for (int i = 0; i < count; i++)
@@ -96,7 +95,7 @@ public class PlayerScript : MonoBehaviour
         CreateBlocks(redPrefab, xMax, yMax, 1 + level, 10);
         CreateBlocks(greenPrefab, xMax, yMax, 1 + level, 12);
         CreateBlocks(yellowPrefab, xMax, yMax, 2 + level, 15);
-        CreateBalls();
+        CreateBalls(2);
     }
 
     IEnumerator BallDestroyedCoroutine()
@@ -104,7 +103,7 @@ public class PlayerScript : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         if (GameObject.FindGameObjectsWithTag("Ball").Length == 0)
             if (gameData.balls > 0)
-                CreateBalls();
+                CreateBalls(2);
             else
             {
                 gameData.Reset();

@@ -41,16 +41,4 @@ public class GameDataScript : ScriptableObject
         music = PlayerPrefs.GetInt("music", 1) == 1;
         sound = PlayerPrefs.GetInt("sound", 1) == 1;
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
