@@ -9,9 +9,8 @@ public class GreenBlock : Block
     public override void CollisionHit(Collision2D collision)
     {
         base.CollisionHit(collision);
-        if (CountToDestroy == 0)
+        if (CountToDestroy <= 0)
         {
-
             var obj = Instantiate(bonuses[Random.Range(0, bonuses.Length-1)]);
             var bonusBase = obj.GetComponent<BonusBase>();
             bonusBase.transform.position = collision.transform.position;
