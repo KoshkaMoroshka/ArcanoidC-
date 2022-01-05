@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BallScript : MonoBehaviour
 {
-
     public Vector2 ballInitialForce;
     Rigidbody2D rb;
     GameObject playerObj;
@@ -15,11 +15,14 @@ public class BallScript : MonoBehaviour
     public GameDataScript gameData;
     public int damage = 1;
 
+    [SerializeField] private UnityEvent<Block> onCollisionWithBlock;
+    [SerializeField] private UnityEvent<Border> onCollisionWithBorder;
+    [SerializeField] private UnityEvent<PlayerScript> onCollisionWithPlayer;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
         rb = GetComponent<Rigidbody2D>();
         playerObj = GameObject.FindGameObjectWithTag("Player");
         deltaX = transform.position.x;
@@ -43,6 +46,7 @@ public class BallScript : MonoBehaviour
                 transform.position = pos;
             }
         }
+
         if (!rb.isKinematic && Input.GetKeyDown(KeyCode.J))
         {
             var v = rb.velocity;
@@ -59,7 +63,20 @@ public class BallScript : MonoBehaviour
         //audioSrc.PlayOneShot(hitSound);
         if (gameData.sound)
             audioSrc.PlayOneShot(hitSound, 5);
+        if (collision.gameObject.TryGetComponent(out Block block))
+        {
+            onCollisionWithBlock?.Invoke(block);
+        }
+        else if (collision.gameObject.TryGetComponent(out Border border))
+        {
+            onCollisionWithBorder?.Invoke(border);
+        }
+        else if (collision.gameObject.TryGetComponent(out PlayerScript player))
+        {
+            onCollisionWithPlayer?.Invoke(player);
+        }
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         //audioSrc.PlayOneShot(loseSound);
