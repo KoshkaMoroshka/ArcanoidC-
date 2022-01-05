@@ -22,6 +22,22 @@ public class LevelGenerator : EditorWindow
     private Vector2 _positionForSpawn;
     private Vector2 _scrollerPosition;
 
+    private GameObject _spawnAreaHorizontal;
+    private GameObject _spawnAreaVertical;
+
+    private void OnEnable()
+    {
+        _spawnAreaHorizontal = InitSpawnArea(nameof(_spawnAreaHorizontal));
+        _spawnAreaVertical = InitSpawnArea(nameof(_spawnAreaVertical));
+    }
+
+    private void OnDisable()
+    {
+        DestroyImmediate(_spawnAreaHorizontal);
+        DestroyImmediate(_spawnAreaVertical);
+        _blocksOnMap.ForEach(block => DestroyImmediate(block.gameObject));
+    }
+
     private void OnGUI()
     {
         GUILayout.BeginHorizontal();
@@ -40,6 +56,7 @@ public class LevelGenerator : EditorWindow
             DrawBlockButtons();
         }
         GUILayout.EndHorizontal();
+        DrawSpawnAreaOnScene();
     }
 
     [MenuItem("Tools/LevelGenerator")]
@@ -48,6 +65,35 @@ public class LevelGenerator : EditorWindow
         var window = GetWindow<LevelGenerator>();
         window.titleContent = new GUIContent("LevelGenerator");
         window.Show();
+    }
+
+    private GameObject InitSpawnArea(string spawnAreaName)
+    {
+        var spawnArea = new GameObject(spawnAreaName);
+        var renderer = spawnArea.AddComponent<SpriteRenderer>();
+        renderer.sprite = Sprite.Create(Texture2D.whiteTexture,
+            new Rect(Vector2.zero, Vector2.one), Vector2.one / 2,
+            1);
+        renderer.color = new Color(1, 1, 1, 0.3f);
+        spawnArea.tag = "EditorOnly";
+
+        return spawnArea;
+    }
+
+    private void DrawSpawnAreaOnScene()
+    {
+        _spawnAreaHorizontal.SetActive(_blocksPreparedForSpawn.Count > 0);
+        _spawnAreaVertical.SetActive(_blocksPreparedForSpawn.Count > 0);
+
+        Vector2 widthForHorizontal = Vector2.right * _blocksPreparedForSpawn.Count * HorizontalOffset;
+        _spawnAreaHorizontal.transform.position =
+            _positionForSpawn + widthForHorizontal / 2 + Vector2.left * HorizontalOffset / 2;
+        _spawnAreaHorizontal.transform.localScale = (Vector3) (widthForHorizontal + _blockSize) + Vector3.forward;
+
+        Vector2 widthForVertical = Vector2.down * _blocksPreparedForSpawn.Count * VerticalOffset;
+        _spawnAreaVertical.transform.position =
+            _positionForSpawn + widthForVertical / 2 + Vector2.up * VerticalOffset / 2;
+        _spawnAreaVertical.transform.localScale = (Vector3) (widthForVertical * -1 + _blockSize) + Vector3.forward;
     }
 
     private void DrawButtonClearScene()
@@ -150,7 +196,7 @@ public class LevelGenerator : EditorWindow
 
     private void SpawnHorizontal()
     {
-        Vector2 width = Vector2.right * _blocksOnMap.Count * HorizontalOffset;
+        Vector2 width = Vector2.right * _blocksPreparedForSpawn.Count * HorizontalOffset;
         RaycastHit2D[] hits = Physics2D.BoxCastAll(_positionForSpawn + width / 2, width + _blockSize, 0, Vector2.zero);
         if (hits.Any(hit => hit.transform.GetComponent<Block>()))
             return;
@@ -163,7 +209,7 @@ public class LevelGenerator : EditorWindow
 
     private void SpawnVertical()
     {
-        Vector2 width = Vector2.down * _blocksOnMap.Count * VerticalOffset;
+        Vector2 width = Vector2.down * _blocksPreparedForSpawn.Count * VerticalOffset;
         RaycastHit2D[] hits =
             Physics2D.BoxCastAll(_positionForSpawn + width / 2, width * -1 + _blockSize, 0, Vector2.zero);
         if (hits.Any(hit => hit.transform.GetComponent<Block>()))
