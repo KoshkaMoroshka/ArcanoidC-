@@ -72,6 +72,7 @@ public class LevelGenerator : EditorWindow
     private GameObject InitSpawnArea(string spawnAreaName)
     {
         var spawnArea = new GameObject(spawnAreaName);
+        spawnArea.hideFlags = HideFlags.HideInHierarchy;
         var renderer = spawnArea.AddComponent<SpriteRenderer>();
         renderer.sprite = Sprite.Create(Texture2D.whiteTexture,
             new Rect(Vector2.zero, Vector2.one), Vector2.one / 2,
@@ -247,6 +248,11 @@ public class LevelGenerator : EditorWindow
 
     private void Load()
     {
+        if (_repository.ExistLevel(_level) == false)
+        {
+            Debug.LogError($"Level not exist");
+            return;
+        }
         DestroyBlocksOnMap();
         IReadOnlyList<BlockData> blocksData = _repository.Load(_level);
         _blocksOnMap.AddRange(Spawn(blocksData));

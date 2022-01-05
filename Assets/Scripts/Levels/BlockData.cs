@@ -8,6 +8,10 @@ public class BlockData
         Position = localPosition;
     }
 
-    public string BlockName { get; }
-    public Vector3 Position { get; }
+    public BlockData()
+    {
+    }
+
+    public string BlockName { get; set; }
+    public Vector3 Position { get; set; }
 }
