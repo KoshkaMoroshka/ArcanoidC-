@@ -2,12 +2,12 @@
 
 public class BlockData
 {
-    public BlockData(Block block, Vector3 localPosition)
+    public BlockData(string blockName, Vector3 localPosition)
     {
-        Block = block;
+        BlockName = blockName;
         Position = localPosition;
     }
 
+    public string BlockName { get; }
     public Vector3 Position { get; }
-    public Block Block { get; }
 }

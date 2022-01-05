@@ -13,7 +13,7 @@ public class LevelGenerator : EditorWindow
 
     private readonly Vector2 _blockSize = Vector2.one;
 
-    private readonly List<Block> _blocksOnMap = new List<Block>();
+    private readonly List<(Block block, Block parent)> _blocksOnMap = new List<(Block, Block)>();
     private readonly List<Block> _blocksPreparedForSpawn = new List<Block>();
 
     private readonly LevelRepository _repository = new XmlLevelRepository();
@@ -22,6 +22,7 @@ public class LevelGenerator : EditorWindow
     private Vector2 _positionForSpawn;
     private Vector2 _scrollerPosition;
 
+    private readonly Color _spawnAreaColor = new Color(1, 1, 1, 0.3f);
     private GameObject _spawnAreaHorizontal;
     private GameObject _spawnAreaVertical;
 
@@ -35,7 +36,7 @@ public class LevelGenerator : EditorWindow
     {
         DestroyImmediate(_spawnAreaHorizontal);
         DestroyImmediate(_spawnAreaVertical);
-        _blocksOnMap.ForEach(block => DestroyImmediate(block.gameObject));
+        _blocksOnMap.ForEach(blockPair => DestroyImmediate(blockPair.block.gameObject));
     }
 
     private void OnGUI()
@@ -56,6 +57,7 @@ public class LevelGenerator : EditorWindow
             DrawBlockButtons();
         }
         GUILayout.EndHorizontal();
+
         DrawSpawnAreaOnScene();
     }
 
@@ -74,7 +76,7 @@ public class LevelGenerator : EditorWindow
         renderer.sprite = Sprite.Create(Texture2D.whiteTexture,
             new Rect(Vector2.zero, Vector2.one), Vector2.one / 2,
             1);
-        renderer.color = new Color(1, 1, 1, 0.3f);
+        renderer.color = _spawnAreaColor;
         spawnArea.tag = "EditorOnly";
 
         return spawnArea;
@@ -99,10 +101,7 @@ public class LevelGenerator : EditorWindow
     private void DrawButtonClearScene()
     {
         if (GUILayout.Button("Clear created blocks"))
-        {
-            _blocksOnMap.ForEach(block => DestroyImmediate(block.gameObject));
-            _blocksOnMap.Clear();
-        }
+            DestroyBlocksOnMap();
     }
 
     private void DrawBlockButtons()
@@ -203,7 +202,9 @@ public class LevelGenerator : EditorWindow
 
         for (var i = 0; i < _blocksPreparedForSpawn.Count; i++)
         {
-            _blocksOnMap.Add(Spawn(_blocksPreparedForSpawn[i], Vector2.right * i * HorizontalOffset));
+            Block prefab = _blocksPreparedForSpawn[i];
+            Block block = Spawn(prefab, Vector2.right * i * HorizontalOffset);
+            _blocksOnMap.Add((block, prefab));
         }
     }
 
@@ -217,7 +218,9 @@ public class LevelGenerator : EditorWindow
 
         for (var i = 0; i < _blocksPreparedForSpawn.Count; i++)
         {
-            _blocksOnMap.Add(Spawn(_blocksPreparedForSpawn[i], Vector2.down * i * VerticalOffset));
+            Block prefab = _blocksPreparedForSpawn[i];
+            Block block = Spawn(prefab, Vector2.down * i * VerticalOffset);
+            _blocksOnMap.Add((block, prefab));
         }
     }
 
@@ -228,14 +231,15 @@ public class LevelGenerator : EditorWindow
         return obj;
     }
 
-    private List<Block> Spawn(IReadOnlyList<BlockData> blocksData)
+    private List<(Block block, Block parent)> Spawn(IReadOnlyList<BlockData> blocksData)
     {
-        var list = new List<Block>();
+        var list = new List<(Block block, Block parent)>();
         foreach (BlockData data in blocksData)
         {
-            var block = ((Block) PrefabUtility.InstantiatePrefab(data.Block)).GetComponent<Block>();
+            Block prefab = blocksForSpawn.FirstOrDefault(blockForSpawn => blockForSpawn.name == data.BlockName);
+            var block = ((Block) PrefabUtility.InstantiatePrefab(prefab)).GetComponent<Block>();
             block.transform.localPosition = data.Position;
-            list.Add(block);
+            list.Add((block, prefab));
         }
 
         return list;
@@ -243,18 +247,21 @@ public class LevelGenerator : EditorWindow
 
     private void Load()
     {
-        _blocksOnMap.ForEach(block => DestroyImmediate(block.gameObject));
-        _blocksOnMap.Clear();
-
+        DestroyBlocksOnMap();
         IReadOnlyList<BlockData> blocksData = _repository.Load(_level);
         _blocksOnMap.AddRange(Spawn(blocksData));
     }
 
     private void Save()
     {
-        List<BlockData> blocks = _blocksOnMap
-            .Select(block => new BlockData(block, block.transform.localPosition))
-            .ToList();
-        _repository.Save(_level, blocks);
+        List<BlockData> blockData = _blocksOnMap.Select(blockPair =>
+            new BlockData(blockPair.parent.name, blockPair.block.transform.localPosition)).ToList();
+        _repository.Save(_level, blockData);
+    }
+
+    private void DestroyBlocksOnMap()
+    {
+        _blocksOnMap.ForEach(blockData => DestroyImmediate(blockData.block.gameObject));
+        _blocksOnMap.Clear();
     }
 }
