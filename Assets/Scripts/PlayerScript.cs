@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public class PlayerScript : MonoBehaviour
     public Block redPrefab;
     public Block greenPrefab;
     public Block yellowPrefab;
+    public List<Block> listBlocks = new List<Block>();
     public GameObject ballPrefab;
     public GameDataScript gameData;
     AudioSource audioSrc;
@@ -91,10 +93,26 @@ public class PlayerScript : MonoBehaviour
         SetBackground();
         var yMax = Camera.main.orthographicSize * 0.8f;
         var xMax = Camera.main.orthographicSize * Camera.main.aspect * 0.85f;
-        CreateBlocks(bluePrefab, xMax, yMax, level, 8);
-        CreateBlocks(redPrefab, xMax, yMax, 1 + level, 10);
-        CreateBlocks(greenPrefab, xMax, yMax, 1 + level, 12);
-        CreateBlocks(yellowPrefab, xMax, yMax, 2 + level, 15);
+        var repository = new XmlLevelRepository();
+        if (repository.ExistLevel(level))
+        {
+            var data = repository.Load(level);
+            listBlocks = new List<Block>() {bluePrefab,redPrefab,greenPrefab,yellowPrefab};
+            foreach (BlockData blockData in data)
+            {
+                Block prefab = listBlocks.FirstOrDefault(block => block.name == blockData.BlockName);
+                if (prefab == default)
+                    continue;
+                Block block = Instantiate(prefab, blockData.Position, Quaternion.identity);
+            }
+        }
+        else
+        {
+            CreateBlocks(bluePrefab, xMax, yMax, level, 8);
+            CreateBlocks(redPrefab, xMax, yMax, 1 + level, 10);
+            CreateBlocks(greenPrefab, xMax, yMax, 1 + level, 12);
+            CreateBlocks(yellowPrefab, xMax, yMax, 2 + level, 15);
+        }
         CreateBalls(2);
     }
 

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfBlockData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <BlockData>
+    <BlockName>Blue Block</BlockName>
+    <Position>
+      <x>-4.41</x>
+      <y>3.39</y>
+      <z>0</z>
+    </Position>
+  </BlockData>
+  <BlockData>
+    <BlockName>Green Cube</BlockName>
+    <Position>
+      <x>-2.90999985</x>
+      <y>3.39</y>
+      <z>0</z>
+    </Position>
+  </BlockData>
+  <BlockData>
+    <BlockName>Yellow Cube</BlockName>
+    <Position>
+      <x>-1.40999985</x>
+      <y>3.39</y>
+      <z>0</z>
+    </Position>
+  </BlockData>
+  <BlockData>
+    <BlockName>Red Block</BlockName>
+    <Position>
+      <x>0.09000015</x>
+      <y>3.39</y>
+      <z>0</z>
+    </Position>
+  </BlockData>
+  <BlockData>
+    <BlockName>Blue Block</BlockName>
+    <Position>
+      <x>1.59000015</x>
+      <y>3.39</y>
+      <z>0</z>
+    </Position>
+  </BlockData>
+  <BlockData>
+    <BlockName>Blue Block</BlockName>
+    <Position>
+      <x>-4.41</x>
+      <y>2.43</y>
+      <z>0</z>
+    </Position>
+  </BlockData>
+  <BlockData>
+    <BlockName>Green Cube</BlockName>
+    <Position>
+      <x>-2.90999985</x>
+      <y>2.43</y>
+      <z>0</z>
+    </Position>
+  </BlockData>
+  <BlockData>
+    <BlockName>Yellow Cube</BlockName>
+    <Position>
+      <x>-1.40999985</x>
+      <y>2.43</y>
+      <z>0</z>
+    </Position>
+  </BlockData>
+  <BlockData>
+    <BlockName>Red Block</BlockName>
+    <Position>
+      <x>0.09000015</x>
+      <y>2.43</y>
+      <z>0</z>
+    </Position>
+  </BlockData>
+  <BlockData>
+    <BlockName>Blue Block</BlockName>
+    <Position>
+      <x>1.59000015</x>
+      <y>2.43</y>
+      <z>0</z>
+    </Position>
+  </BlockData>
+  <BlockData>
+    <BlockName>Blue Block</BlockName>
+    <Position>
+      <x>-4.41</x>
+      <y>1.54</y>
+      <z>0</z>
+    </Position>
+  </BlockData>
+  <BlockData>
+    <BlockName>Green Cube</BlockName>
+    <Position>
+      <x>-2.90999985</x>
+      <y>1.54</y>
+      <z>0</z>
+    </Position>
+  </BlockData>
+  <BlockData>
+    <BlockName>Yellow Cube</BlockName>
+    <Position>
+      <x>-1.40999985</x>
+      <y>1.54</y>
+      <z>0</z>
+    </Position>
+  </BlockData>
+  <BlockData>
+    <BlockName>Red Block</BlockName>
+    <Position>
+      <x>0.09000015</x>
+      <y>1.54</y>
+      <z>0</z>
+    </Position>
+  </BlockData>
+  <BlockData>
+    <BlockName>Blue Block</BlockName>
+    <Position>
+      <x>1.59000015</x>
+      <y>1.54</y>
+      <z>0</z>
+    </Position>
+  </BlockData>
+  <BlockData>
+    <BlockName>Blue Block</BlockName>
+    <Position>
+      <x>-4.41</x>
+      <y>0.57</y>
+      <z>0</z>
+    </Position>
+  </BlockData>
+  <BlockData>
+    <BlockName>Green Cube</BlockName>
+    <Position>
+      <x>-2.90999985</x>
+      <y>0.57</y>
+      <z>0</z>
+    </Position>
+  </BlockData>
+  <BlockData>
+    <BlockName>Yellow Cube</BlockName>
+    <Position>
+      <x>-1.40999985</x>
+      <y>0.57</y>
+      <z>0</z>
+    </Position>
+  </BlockData>
+  <BlockData>
+    <BlockName>Red Block</BlockName>
+    <Position>
+      <x>0.09000015</x>
+      <y>0.57</y>
+      <z>0</z>
+    </Position>
+  </BlockData>
+  <BlockData>
+    <BlockName>Blue Block</BlockName>
+    <Position>
+      <x>1.59000015</x>
+      <y>0.57</y>
+      <z>0</z>
+    </Position>
+  </BlockData>
+</ArrayOfBlockData>
