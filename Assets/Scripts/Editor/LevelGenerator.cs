@@ -22,6 +22,7 @@ public class LevelGenerator : EditorWindow
     private Vector2 _positionForSpawn;
     private Vector2 _scrollerPosition;
 
+    private readonly float _zOffsetSpawnArea = -3;
     private readonly Color _spawnAreaColor = new Color(1, 1, 1, 0.3f);
     private GameObject _spawnAreaHorizontal;
     private GameObject _spawnAreaVertical;
@@ -90,12 +91,14 @@ public class LevelGenerator : EditorWindow
 
         Vector2 widthForHorizontal = Vector2.right * _blocksPreparedForSpawn.Count * HorizontalOffset;
         _spawnAreaHorizontal.transform.position =
-            _positionForSpawn + widthForHorizontal / 2 + Vector2.left * HorizontalOffset / 2;
+            (Vector3) (_positionForSpawn + widthForHorizontal / 2 + Vector2.left * HorizontalOffset / 2) +
+            Vector3.forward * _zOffsetSpawnArea;
         _spawnAreaHorizontal.transform.localScale = (Vector3) (widthForHorizontal + _blockSize) + Vector3.forward;
 
         Vector2 widthForVertical = Vector2.down * _blocksPreparedForSpawn.Count * VerticalOffset;
         _spawnAreaVertical.transform.position =
-            _positionForSpawn + widthForVertical / 2 + Vector2.up * VerticalOffset / 2;
+            (Vector3) (_positionForSpawn + widthForVertical / 2 + Vector2.up * VerticalOffset / 2) +
+            Vector3.forward * _zOffsetSpawnArea;
         _spawnAreaVertical.transform.localScale = (Vector3) (widthForVertical * -1 + _blockSize) + Vector3.forward;
     }
 
@@ -253,6 +256,7 @@ public class LevelGenerator : EditorWindow
             Debug.LogError($"Level not exist");
             return;
         }
+
         DestroyBlocksOnMap();
         IReadOnlyList<BlockData> blocksData = _repository.Load(_level);
         _blocksOnMap.AddRange(Spawn(blocksData));
