@@ -5,9 +5,9 @@ using UnityEngine;
 public class BallScript : MonoBehaviour
 {
     public Vector2 ballInitialForce;
-    Rigidbody2D rb;
-    GameObject playerObj;
-    float deltaX;
+    protected Rigidbody2D rb;
+    protected GameObject playerObj;
+    protected float deltaX;
     AudioSource audioSrc;
     public AudioClip hitSound;
     public AudioClip loseSound;
@@ -24,8 +24,7 @@ public class BallScript : MonoBehaviour
         audioSrc = Camera.main.GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void AddForceAndCreateBalls()
     {
         if (rb.isKinematic)
         {
@@ -41,7 +40,14 @@ public class BallScript : MonoBehaviour
                 transform.position = pos;
             }
         }
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
+
+        AddForceAndCreateBalls();
+        
         if (!rb.isKinematic && Input.GetKeyDown(KeyCode.J))
         {
             var v = rb.velocity;
@@ -56,6 +62,12 @@ public class BallScript : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         //audioSrc.PlayOneShot(hitSound);
+        
+        OnCollisionBall();
+    }
+
+    public virtual void OnCollisionBall()
+    {
         if (gameData.sound)
             audioSrc.PlayOneShot(hitSound, 5);
     }

@@ -5,4 +5,9 @@ using UnityEngine;
 public class BigBallScript : BallScript
 {
     
+    public override void OnCollisionBall()
+    {
+        damage = 4;
+        Destroy(gameObject);
+    }
 }

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BonusSimple : BonusBase
+public class BonusBigGun : BonusBase
 {
+    [SerializeField] private GameObject bigGun;
+    
     public override void CreateBonus()
     {
         if (canvas == null) canvas = FindObjectOfType<Canvas>();
@@ -15,10 +17,11 @@ public class BonusSimple : BonusBase
         BlockHP.transform.position = Camera.main.WorldToScreenPoint(transform.position);
         gameObject.GetComponent<SpriteRenderer>().color = ColorBonus;
     }
-
     public override void Bonus()
     {
-        foreach (var o in GameObject.FindGameObjectsWithTag("Gun"))
-            Destroy(o);
+        if (GameObject.FindGameObjectsWithTag("Gun") != null)
+            foreach (var o in GameObject.FindGameObjectsWithTag("Gun"))
+                Destroy(o);
+        var obj = Instantiate(bigGun);
     }
 }

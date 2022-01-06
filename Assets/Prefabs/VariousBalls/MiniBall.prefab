@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1214355377792406345}
   - component: {fileID: 1214355377792406346}
   - component: {fileID: 5857956307992607927}
+  - component: {fileID: 5324125783798393165}
+  - component: {fileID: 1700283340229417657}
   m_Layer: 6
   m_Name: MiniBall
   m_TagString: Ball
@@ -100,3 +102,42 @@ MonoBehaviour:
   loseSound: {fileID: 0}
   gameData: {fileID: 11400000, guid: 142df482a06af5c439ce57e5c8341f28, type: 2}
   damage: 1
+  miniBall: {fileID: 1214355377792406347}
+  miniGun: {fileID: 1783290235738408614, guid: a58ba848828e0004eb61ebe7b8e03cc3, type: 3}
+--- !u!58 &5324125783798393165
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214355377792406347}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.64
+--- !u!50 &1700283340229417657
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214355377792406347}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

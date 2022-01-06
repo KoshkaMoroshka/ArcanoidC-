@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5385754674113391104}
   - component: {fileID: 6918411733959218097}
+  - component: {fileID: -5340979684212671223}
   m_Layer: 0
   m_Name: BigGun
-  m_TagString: Untagged
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -82,3 +83,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-5340979684212671223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8526935690225065378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32c2d87ef5190154fb247060a4b3b173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miniBall: {fileID: 924191308459366008, guid: 16d4530701f00594687fcf3bad365252, type: 3}
+  ballInitialForce: {x: 0, y: 300}

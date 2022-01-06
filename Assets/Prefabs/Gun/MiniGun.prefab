@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6085317669582850919}
   m_Layer: 0
   m_Name: MiniGun
-  m_TagString: Untagged
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,4 +95,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c2d87ef5190154fb247060a4b3b173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  miniBall: {fileID: 1214355377792406347, guid: b908d5f08f40fa84186df7307b1d54a1, type: 3}
+  ballInitialForce: {x: 0, y: 300}
