@@ -3,160 +3,56 @@
   <BlockData>
     <BlockName>Blue Block</BlockName>
     <Position>
-      <x>-4.41</x>
-      <y>3.39</y>
+      <x>-3.76</x>
+      <y>2.84</y>
       <z>0</z>
     </Position>
   </BlockData>
   <BlockData>
     <BlockName>Green Cube</BlockName>
     <Position>
-      <x>-2.90999985</x>
-      <y>3.39</y>
-      <z>0</z>
-    </Position>
-  </BlockData>
-  <BlockData>
-    <BlockName>Yellow Cube</BlockName>
-    <Position>
-      <x>-1.40999985</x>
-      <y>3.39</y>
+      <x>-3.76</x>
+      <y>1.83999991</y>
       <z>0</z>
     </Position>
   </BlockData>
   <BlockData>
     <BlockName>Red Block</BlockName>
     <Position>
-      <x>0.09000015</x>
-      <y>3.39</y>
+      <x>-3.76</x>
+      <y>0.8399999</y>
       <z>0</z>
     </Position>
   </BlockData>
   <BlockData>
     <BlockName>Blue Block</BlockName>
     <Position>
-      <x>1.59000015</x>
-      <y>3.39</y>
-      <z>0</z>
-    </Position>
-  </BlockData>
-  <BlockData>
-    <BlockName>Blue Block</BlockName>
-    <Position>
-      <x>-4.41</x>
-      <y>2.43</y>
+      <x>1.77</x>
+      <y>3.37</y>
       <z>0</z>
     </Position>
   </BlockData>
   <BlockData>
     <BlockName>Green Cube</BlockName>
     <Position>
-      <x>-2.90999985</x>
-      <y>2.43</y>
-      <z>0</z>
-    </Position>
-  </BlockData>
-  <BlockData>
-    <BlockName>Yellow Cube</BlockName>
-    <Position>
-      <x>-1.40999985</x>
-      <y>2.43</y>
+      <x>3.27</x>
+      <y>3.37</y>
       <z>0</z>
     </Position>
   </BlockData>
   <BlockData>
     <BlockName>Red Block</BlockName>
     <Position>
-      <x>0.09000015</x>
-      <y>2.43</y>
+      <x>4.77</x>
+      <y>3.37</y>
       <z>0</z>
     </Position>
   </BlockData>
   <BlockData>
     <BlockName>Blue Block</BlockName>
     <Position>
-      <x>1.59000015</x>
-      <y>2.43</y>
-      <z>0</z>
-    </Position>
-  </BlockData>
-  <BlockData>
-    <BlockName>Blue Block</BlockName>
-    <Position>
-      <x>-4.41</x>
-      <y>1.54</y>
-      <z>0</z>
-    </Position>
-  </BlockData>
-  <BlockData>
-    <BlockName>Green Cube</BlockName>
-    <Position>
-      <x>-2.90999985</x>
-      <y>1.54</y>
-      <z>0</z>
-    </Position>
-  </BlockData>
-  <BlockData>
-    <BlockName>Yellow Cube</BlockName>
-    <Position>
-      <x>-1.40999985</x>
-      <y>1.54</y>
-      <z>0</z>
-    </Position>
-  </BlockData>
-  <BlockData>
-    <BlockName>Red Block</BlockName>
-    <Position>
-      <x>0.09000015</x>
-      <y>1.54</y>
-      <z>0</z>
-    </Position>
-  </BlockData>
-  <BlockData>
-    <BlockName>Blue Block</BlockName>
-    <Position>
-      <x>1.59000015</x>
-      <y>1.54</y>
-      <z>0</z>
-    </Position>
-  </BlockData>
-  <BlockData>
-    <BlockName>Blue Block</BlockName>
-    <Position>
-      <x>-4.41</x>
-      <y>0.57</y>
-      <z>0</z>
-    </Position>
-  </BlockData>
-  <BlockData>
-    <BlockName>Green Cube</BlockName>
-    <Position>
-      <x>-2.90999985</x>
-      <y>0.57</y>
-      <z>0</z>
-    </Position>
-  </BlockData>
-  <BlockData>
-    <BlockName>Yellow Cube</BlockName>
-    <Position>
-      <x>-1.40999985</x>
-      <y>0.57</y>
-      <z>0</z>
-    </Position>
-  </BlockData>
-  <BlockData>
-    <BlockName>Red Block</BlockName>
-    <Position>
-      <x>0.09000015</x>
-      <y>0.57</y>
-      <z>0</z>
-    </Position>
-  </BlockData>
-  <BlockData>
-    <BlockName>Blue Block</BlockName>
-    <Position>
-      <x>1.59000015</x>
-      <y>0.57</y>
+      <x>1.77</x>
+      <y>1.37</y>
       <z>0</z>
     </Position>
   </BlockData>

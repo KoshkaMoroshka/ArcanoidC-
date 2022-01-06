@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BallScript : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class BallScript : MonoBehaviour
     public AudioClip loseSound;
     public GameDataScript gameData;
     public int damage = 1;
+    
+    [SerializeField] private UnityEvent<Block> onCollisionWithBlock;
+    [SerializeField] private UnityEvent<Border> onCollisionWithBorder;
+    [SerializeField] private UnityEvent<PlayerScript> onCollisionWithPlayer;
 
 
     // Start is called before the first frame update
@@ -64,6 +69,18 @@ public class BallScript : MonoBehaviour
         //audioSrc.PlayOneShot(hitSound);
         
         OnCollisionBall();
+        if (collision.gameObject.TryGetComponent(out Block block))
+        {
+            onCollisionWithBlock?.Invoke(block);
+        }
+        else if (collision.gameObject.TryGetComponent(out Border border))
+        {
+            onCollisionWithBorder?.Invoke(border);
+        }
+        else if (collision.gameObject.TryGetComponent(out PlayerScript player))
+        {
+            onCollisionWithPlayer?.Invoke(player);
+        }
     }
 
     public virtual void OnCollisionBall()
