@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BonusNorm : BonusBase
+public class BonusSimple : BonusBase
 {
     public override void CreateBonus()
     {
@@ -18,10 +18,5 @@ public class BonusNorm : BonusBase
 
     public override void Bonus()
     {
-        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Ball"))
-        {
-            obj.GetComponent<SpriteRenderer>().color = ColorBonus;
-            obj.GetComponent<BallScript>().damage = 1;
-        }
     }
 }
